@@ -1,1 +1,4 @@
 venv
+image
+old
+__pycache__
