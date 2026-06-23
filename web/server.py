@@ -16,7 +16,8 @@ html = """
         <div id="metrics">im bored...</div>
         <button onclick="sendSomething()">do something</button>
         <script>
-            const ws = new WebSocket("ws://localhost:8000/ws");
+            const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+            const ws = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
             ws.onopen = function(event) {
                 console.log("WebSocket is open");

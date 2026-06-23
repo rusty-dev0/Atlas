@@ -81,18 +81,24 @@ def lidarStreamWorker():
             polarHistogram[binIndex] = (total_distance + scan.distance, count + 1)
 
             if prevAngle is not None and scan.angle < prevAngle:
-                currBestDirection = 0
-                for i in range(8):
-                    currAvg = polarHistogram[i][0] / polarHistogram[i][1] if polarHistogram[i][1] > 0 else 0
-                    bestAvg = polarHistogram[currBestDirection][0] / polarHistogram[currBestDirection][1] if polarHistogram[currBestDirection][1] > 0 else 0
-                    if currAvg > bestAvg:
-                        currBestDirection = i
+                total_points_collected = sum(polarHistogram[i][1] for i in range(8))
+                
+                if total_points_collected > 0:
+                    currBestDirection = 0
+                    for i in range(8):
+                        currAvg = polarHistogram[i][0] / polarHistogram[i][1] if polarHistogram[i][1] > 0 else 0
+                        bestAvg = polarHistogram[currBestDirection][0] / polarHistogram[currBestDirection][1] if polarHistogram[currBestDirection][1] > 0 else 0
+                        if currAvg > bestAvg:
+                            currBestDirection = i
+                    bestDirection = currBestDirection * STEP
+                else:
+                    bestDirection = 0 
                 
                 latestScanData = list(pointsToLoad)
-                bestDirection = currBestDirection * STEP
                 pointsToLoad.clear()
                 for i in range(8):
                     polarHistogram[i] = (0, 0)
+
             
             prevAngle = scan.angle
             
@@ -127,8 +133,8 @@ html = """<!DOCTYPE html>
         const ctx = canvas.getContext("2d");
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
-        
-        const ws = new WebSocket("ws://localhost:8000/ws");
+        const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+        const ws = new WebSocket(`${protocol}://${window.location.host}/ws`);
         
         ws.onopen = () => document.getElementById("status").innerText = "Streaming Data";
         ws.onclose = () => document.getElementById("status").innerText = "Disconnected";
@@ -210,4 +216,4 @@ async def websocket_endpoint(websocket: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("dynamicWebApp:app", host="localhost", port=8000, reload=True)
+    uvicorn.run("dynamicWebApp:app", host="localhost", port=8000, reload=True) # change this to 0.0.0.0 if on Docker

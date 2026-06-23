@@ -2,3 +2,5 @@ venv
 image
 old
 __pycache__
+atlas_arm.tar
+build
