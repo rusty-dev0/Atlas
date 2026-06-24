@@ -11,5 +11,7 @@
 
 #define M1_PIN 16
 #define M2_PIN 17
+#define M3_PIN 18
+#define M4_PIN 19
 
 #define LED_PIN 25
