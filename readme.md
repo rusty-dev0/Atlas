@@ -3,8 +3,11 @@ A simplified robotics platform for middle and elementary school students to use.
 ## Features
 - **Raspberry Pi**: Esentially Atlas's "brain." It collects and processes information from various sensors and makes decisions based off them.
 - **Lidar** (the main thing): It can detect nearby objects using what's essentially a rotating ToF sensor. The exact model is an RPLidar C1.
+![Atlas Assembly](image/assembly.png)
 - **KineticBoard Leaf**: While the main Pi is busy handling computations and serving an interactive website, the KineticBoard Leaf controller is spinning the robot's motor based on commands from the Pi. The controller ensures that Atlas moves exactly how it should using a PID loop.
+![kineticBoard](image/kineticBoard.png)
 - **WebUI**: The Pi hosts a web app using uvicorn to create WebSocket connections and allow users to easily interact with the robot.
+![webUI](image/webui.png)
 ## BOM
 This is a collection of lists for the parts that I'm planning on buying.
 ### KineticBoard Assembly
