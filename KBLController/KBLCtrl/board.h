@@ -1,4 +1,5 @@
-#define PIN_A 0 // for testing only
+// for testing only
+#define PIN_A 0
 
 // first motor
 #define AIN1 2
