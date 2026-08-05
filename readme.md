@@ -2,6 +2,7 @@
 **A simplified robotics platform for students K-12.**
 
 ![Atlas Assembly](Images/Colosseus.jpg)
+
 *This project is still in a very early stage; take caution during the initial assembly. Be careful while operating the KineticBoard Leaf 0 because it can induce electric shock if not properly soldered.*
 
 ## What's Colosseus?
