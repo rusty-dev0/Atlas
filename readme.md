@@ -1,24 +1,24 @@
 # Colosseus
-A simplified robotics platform for students K-12 to use. 
+**A simplified robotics platform for students K-12.**
 
-**This project is still in a very early stage; take caution during the initial assembly. Be careful while operating the KineticBoard Leaf 0 because it can induce an electric shock if not properly soldered.**
+![Atlas Assembly](Images/Colosseus.jpg)
+*This project is still in a very early stage; take caution during the initial assembly. Be careful while operating the KineticBoard Leaf 0 because it can induce electric shock if not properly soldered.*
 
 ## What's Colosseus?
 Colosseus is designed to be a two-wheeled robot that is easy to program and to learn. Its main feature is its stackable design, allowing more and more boards, often called "levels", to be added on top of it like pancakes. The demo version of Colosseus, which is featured in this repo, comes with a lidar as the main sensor on top.
 
 ## Repository Structure
-The folders `Chassis` and `KineticBoard-Leaf` pertain to the M-CAD/E-CAD portions of this project, respectively. `KBLController`contains firmware for the KineticBoard Leaf microcontroller, which needs to be converted into a `.uf2` format by a `gcc-arm-none-eabi` cross-compiler. `Software` is an umbrella folder for the various software components for the Pi 4, but everything is neatly packaged into a Docker container for a quick and easy installation.
+The folders `Chassis` and `KineticBoard-Leaf` pertain to the M-CAD/E-CAD portions of this project, respectively. `KBLController` contains firmware for the KineticBoard Leaf microcontroller, which needs to be converted into a `.uf2` format by a `gcc-arm-none-eabi` cross-compiler. `Software` is an umbrella folder for the various software components for the Pi 4, but everything is neatly packaged into a Docker container for a quick and easy installation.
 
 ## What's Inside?
-- **Raspberry Pi 4**: Esentially Atlas's "brain." It collects and processes information from various sensors and makes decisions based off them.
+- **Raspberry Pi 4**: Essentially Atlas's "brain." It collects and processes information from various sensors and makes decisions based on them.
 - **Lidar** (the main thing): It can detect nearby objects using what's essentially a rotating ToF sensor. The exact model is an RPLidar C1.
-![Atlas Assembly](image/assembly.png)
 - **KineticBoard Leaf**: While the main Pi is busy handling computations and serving an interactive website, the KineticBoard Leaf is a custom microcontroller which spins the robot's motors based on commands from the Pi. The controller ensures that Colosseus moves exactly how it should using a PID loop.
-![kineticBoard](image/kineticBoard.png)
-- **WebUI**: The Pi hosts a web app using uvicorn to create WebSocket connections and allow users to easily interact with the robot. From here, students can "see" the Colosseus' perspective. For instance, if one of the levels contains a camera, then an option to view the camera feed will be availible. Similarly, if a lidar is connected, then there will be options to view the current point cloud readings from it, too.
-![webUI](image/webui.png)
+![kineticBoard](Images/KineticBoardLeaf0.png)
+- **WebUI**: The Pi hosts a web app using uvicorn to create WebSocket connections and allow users to easily interact with the robot. From here, students can "see" Colosseus' perspective. For instance, if one of the levels contains a camera, then an option to view the camera feed will be available. Similarly, if a lidar is connected, then there will be options to view the current point cloud readings from it, too.
+![webUI](Images/WebUIDemo.webp)
 ## BOM
-This is list of parts that I need for this project. `BOM/lcsc.csv` contains the LCSC parts needed, and `BOM/tools.csv` lists the parts required for the rest of the robot from other online retailers like Amazon. Alternatively, I've added it to this README below:
+This is list of the parts that I need for this project. `BOM/lcsc.csv` contains the LCSC parts needed, and `BOM/tools.csv` lists the parts required for the rest of the robot from other online retailers like Amazon. Alternatively, I've added it to this README below:
 ### KineticBoard Assembly
 | Designator                                    | Footprint                                      | Quantity | Value                       | LCSC Part # |
 |-----------------------------------------------|------------------------------------------------|----------|-----------------------------|-------------|
